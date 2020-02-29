@@ -25,7 +25,10 @@ onready var sprite = $Sprite
 
 func _physics_process(delta):
 	var new_anim = "idle"
-
+	
+	if self.position.x < -100 or self.position.y > 5000:
+		self.queue_free()
+	
 	if state == STATE_WALKING:
 		linear_velocity += GRAVITY_VEC * delta
 		linear_velocity.x = direction * WALK_SPEED

@@ -9,8 +9,8 @@ script = ExtResource( 1 )
 [node name="Platform" type="KinematicBody2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Platform"]
+position = Vector2( 1.42062, 0 )
 texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platform"]
-polygon = PoolVector2Array( -88, -24, 88, -24, 88, 24, -88, 24 )
-
+polygon = PoolVector2Array( -93.8457, -24.0074, 97.1689, -24.8877, 97.1689, -10.3635, -0.538986, -9.04314, -94.2858, -9.9234 )

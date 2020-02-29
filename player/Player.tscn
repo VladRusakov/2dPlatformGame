@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/robot_demo.png" type="Texture" id=2]
@@ -183,7 +183,11 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=11]
-height = 44.4787
+height = 47.6929
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 14.5701
+height = 35.66
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -195,11 +199,11 @@ hframes = 16
 frame = 22
 
 [node name="Smoke" type="Node2D" parent="Sprite"]
-position = Vector2( 20.7312, 3.21187 )
+position = Vector2( 18.5908, -0.355532 )
 rotation = -1.45648
 
 [node name="BulletShoot" type="Position2D" parent="Sprite"]
-position = Vector2( 30.6589, 6.13176 )
+position = Vector2( 30.3375, 5.50484 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/crouch = SubResource( 1 )
@@ -214,25 +218,30 @@ anims/run_weapon = SubResource( 9 )
 anims/standing_weapon_ready = SubResource( 10 )
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 377.73, 84.6865 )
 current = true
+process_mode = 0
 limit_left = 0
-limit_top = 0
+limit_top = -150
+limit_right = 900
+limit_bottom = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.291992, -0.835023 )
+position = Vector2( -1.55264, 2.32722 )
 shape = SubResource( 11 )
 
 [node name="SoundJump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
 [node name="SoundShoot" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 5.27423, 3.51617 )
 stream = ExtResource( 4 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 0
 
 [node name="Left" type="TouchScreenButton" parent="UI"]
-position = Vector2( 27.7593, 360.87 )
+position = Vector2( 2.69982, 372.039 )
 scale = Vector2( 1.49157, 1.46265 )
 normal = ExtResource( 5 )
 passby_press = true
@@ -240,7 +249,7 @@ action = "move_left"
 visibility_mode = 1
 
 [node name="Right" type="TouchScreenButton" parent="UI"]
-position = Vector2( 121.542, 361.415 )
+position = Vector2( 108.01, 374.16 )
 scale = Vector2( 1.49157, 1.46265 )
 normal = ExtResource( 6 )
 passby_press = true
@@ -254,17 +263,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -40.0
 margin_top = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Jump" type="TouchScreenButton" parent="UI/BottomRightAnchor"]
-position = Vector2( -98.151, -83.768 )
+position = Vector2( -77.015, -152.62 )
 scale = Vector2( 1.49157, 1.46265 )
 normal = ExtResource( 7 )
 action = "jump"
 visibility_mode = 1
 
 [node name="Fire" type="TouchScreenButton" parent="UI/BottomRightAnchor"]
-position = Vector2( -96.302, -180 )
+position = Vector2( -186.372, -62.9118 )
 scale = Vector2( 1.49157, 1.46265 )
 normal = ExtResource( 8 )
 action = "shoot"
 visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="UI/BottomRightAnchor"]
+position = Vector2( 17.4562, 33.3964 )
+rotation = 3.14159
+scale = Vector2( 1.49342, 1.45599 )
+normal = ExtResource( 7 )
+visibility_mode = 1
+
+[node name="ScoreTitle" type="Label" parent="UI"]
+margin_left = 29.0
+margin_top = 19.0018
+margin_right = 104.0
+margin_bottom = 45.0018
+text = "SCORE:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="UI"]
+margin_left = 81.0
+margin_top = 19.0
+margin_right = 137.0
+margin_bottom = 35.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCollider"]
+position = Vector2( -2.89871, 3.42575 )
+shape = SubResource( 12 )
+[connection signal="body_entered" from="EnemyCollider" to="." method="_on_EnemyCollider_body_entered"]
