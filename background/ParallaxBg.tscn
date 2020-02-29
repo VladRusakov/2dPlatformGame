@@ -54,6 +54,7 @@ centered = false
 
 [node name="Mount2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 800, 0 )
 
 [node name="Sprite" type="Sprite" parent="Mount2"]
 position = Vector2( 0, 353 )
@@ -63,9 +64,10 @@ region_rect = Rect2( 0, 0, 4096, 256 )
 
 [node name="Mount1" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 800, 0 )
 
 [node name="Sprite" type="Sprite" parent="Mount1"]
-position = Vector2( 0, 353 )
+position = Vector2( 1477.97, 376.967 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4096, 256 )
